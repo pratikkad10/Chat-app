@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
- "scripts": {
+  "scripts": {
     "build": "tsc -b",
     "start": "node dist/index.js",
     "dev": "nodemon --watch src/**/*.ts --exec ts-node src/index.ts"
@@ -15,5 +15,8 @@
     "@types/ws": "^8.18.1",
     "typescript": "^5.8.3",
     "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
   }
 }
