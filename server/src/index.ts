@@ -1,4 +1,9 @@
 import WebSocket, { WebSocketServer } from "ws";
+import express from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
+const app=express();
+const PORT=process.env.PORT;
 
 const wss= new WebSocketServer({port:8080});
 
@@ -34,4 +39,27 @@ wss.on("connection", (socket)=>{
             })
         }
     })
+})
+
+app.post('/signup', (req,res)=>{
+    try {
+        const {username, password}=req.body;
+        if(!username && !password){
+            res.status(400).json({
+                success:false,
+                messsage:"Fields should not empty!"
+            })
+            return;
+        }
+    } catch (error) {
+        res.status(400).json({
+            success:false,
+            messsage:"User not registered!",
+            error
+        })
+    }
+})
+
+app.listen(PORT, ()=>{
+    console.log("Srver listening at port ", PORT);
 })
